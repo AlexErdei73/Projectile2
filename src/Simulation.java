@@ -1,19 +1,21 @@
 public class Simulation {
-    private final double drag;
-    private final double v0;
-    private final double angleInDegrees;
-    private final double angle;
+    private double drag;
+    private double v0;
+    private double angleInDegrees;
+    private double angle;
     private double t;
     private double range;
-    Simulation(double drag, double v0, double angleInDegrees) {
+    private Plot plot;
+    Simulation() {
+        this.plot = new Plot("Trajectory Of Projectile With Air Resistance", 0, 10, 1, 0, 10, 1);
+        this.plot.setPointSize(1);
+    }
+
+    public void launch(double drag, double v0, double angleInDegrees) {
         this.drag = drag;
         this.v0 = v0;
         this.angleInDegrees = angleInDegrees;
         this.angle = angleInDegrees / 180 * Math.PI;
-        this.launch();
-    }
-
-    private void launch() {
         double ax, ay, axmid, aymid, vx, vy, vxmid, vymid, x, y, xmid, ymid, g, gx, gy, dt, t;
         vx = this.v0 * Math.cos(this.angle);
         vy = this.v0 * Math.sin(this.angle);
@@ -38,6 +40,7 @@ public class Simulation {
             vx += axmid * dt;
             vy += aymid * dt;
             t += dt;
+            this.plot.addPoint(x, y);
         }
         this.correctFinalResult(x, y, vx, vy, t);
         this.output();
