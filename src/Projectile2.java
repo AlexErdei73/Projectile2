@@ -1,5 +1,5 @@
 public class Projectile2 {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new Simulation(0.1, 9.8995, 45);
     }
 }
