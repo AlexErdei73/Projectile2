@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Simulation {
     private double drag;
     private double v0;
@@ -6,9 +8,11 @@ public class Simulation {
     private double t;
     private double range;
     private Plot plot;
+    private DecimalFormat decimal;
     Simulation() {
         this.plot = new Plot("Trajectory Of Projectile With Air Resistance", 0, 10, 1, 0, 10, 1);
         this.plot.setPointSize(1);
+        this.decimal = new DecimalFormat("0.0000");
     }
 
     public void launch(double drag, double v0, double angleInDegrees) {
@@ -64,7 +68,7 @@ public class Simulation {
         System.out.println("Speed = " + this.v0 + " m/s");
         System.out.println("Angle = " + this.angleInDegrees + " degrees");
         System.out.println("Drag = " + this.drag + " 1/m");
-        System.out.println("Flight time = " + this.t + " s");
-        System.out.println("Range = " + this.range + " m");
+        System.out.println("Flight time = " + this.decimal.format(this.t) + " s");
+        System.out.println("Range = " + this.decimal.format(this.range) + " m");
     }
 }
