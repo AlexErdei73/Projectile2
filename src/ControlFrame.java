@@ -14,15 +14,19 @@ public class ControlFrame {
         });
         Panel controlPanel = new Panel();
         DoubleScroller angleScroller = new DoubleScroller("Launch angle in degrees = ", 0, 90, 1, 45 );
+        DoubleScroller dragScroller = new DoubleScroller("Launch drag in 1/m = ", 0, 2, 0.005, 1 );
+        DoubleScroller speedScroller = new DoubleScroller("Launch speed in m/s = ", 0, 50, 1, 10 );
         Button launchButton = new Button("Launch");
         launchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                projectile.launch(0.05, 9.8995, angleScroller.getValue());
+                projectile.launch(dragScroller.getValue(), speedScroller.getValue(), angleScroller.getValue());
             }
         });
         controlPanel.add(launchButton);
         controlFrame.add(controlPanel);
+        controlFrame.add(dragScroller);
+        controlFrame.add(speedScroller);
         controlFrame.add(angleScroller);
         controlFrame.pack();
         controlFrame.setVisible(true);
